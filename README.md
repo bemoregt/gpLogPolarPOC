@@ -15,7 +15,7 @@ Scale and Rotate-invariant Image matching using Openframewrks.
 - OSX Mojave
 
 ### Next Plan
-- Rtation & Scale Restotation.
+- Rotation & Scale Restotation.
 - Panoramic merge using Image Sequence. 
 
 ### Reference
