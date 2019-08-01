@@ -3,6 +3,9 @@ Scale and Rotate-invariant Image matching using Openframewrks.
 
 ![ example]( https://github.com/bemoregt/ofxLogPolarPOC/blob/master/test.png "example")
 
+### Algorithm
+- using POC(Phase only correlation) with Log-Polar Transform of 2D FFT.
+
 ### Dependency
 - OpenFrameworks 0.10.1
 - ofxCv
