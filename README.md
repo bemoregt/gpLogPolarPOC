@@ -16,6 +16,7 @@ Scale and Rotate-invariant Image matching using Openframewrks.
 
 ### Next Plan
 - Rtation & Scale Restotation.
+- Panoramic merge using Image Sequence. 
 
 ### Reference
 - Openframeworks Porting from original code : https://github.com/Smorodov/LogPolarFFTTemplateMatcher.git
