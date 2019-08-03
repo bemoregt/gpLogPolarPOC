@@ -5,6 +5,9 @@ Scale and Rotate-invariant Image matching using Openframewrks.
 
 ### Algorithm
 - using POC(Phase only correlation) with Log-Polar Transform of 2D FFT(Mellin Transform).
+- Polar Transform of 2D FFT has rotation invariance.
+- Loarithmic Transform of 2D FFT has scale invariance.
+- 2D FFT has shift invariance.
 
 ### Dependency
 - OpenFrameworks 0.10.1
