@@ -7,6 +7,7 @@ using namespace cv;
 //----------------------------------------------------------
 // Recombinate image quaters
 //----------------------------------------------------------
+// fftshift 
 void Recomb(Mat &src, Mat &dst)
 {
     int cx = src.cols >> 1;
@@ -22,6 +23,7 @@ void Recomb(Mat &src, Mat &dst)
 //----------------------------------------------------------
 // 2D Forward FFT
 //----------------------------------------------------------
+// 2차원 푸리에변환. fftshift 할건지가 옵션
 void ForwardFFT(Mat &Src, Mat *FImg, bool do_recomb = true)
 {
     int M = getOptimalDFTSize(Src.rows);
@@ -48,6 +50,7 @@ void ForwardFFT(Mat &Src, Mat *FImg, bool do_recomb = true)
 //----------------------------------------------------------
 // 2D inverse FFT
 //----------------------------------------------------------
+// 역 푸리에 변환, 역시 fftshift 가 옵션
 void InverseFFT(Mat *FImg, Mat &Dst, bool do_recomb = true)
 {
     if (do_recomb)
@@ -62,7 +65,7 @@ void InverseFFT(Mat *FImg, Mat &Dst, bool do_recomb = true)
     Dst = FImg[0].clone();
 }
 //-----------------------------------------------------------------------------------------------------
-//
+// 하이패스 필터링은 왜 필요한 걸까?
 //-----------------------------------------------------------------------------------------------------
 void highpass(Size sz, Mat& dst)
 {
@@ -90,7 +93,7 @@ void highpass(Size sz, Mat& dst)
     dst = (1.0 - tmp).mul(2.0 - tmp);
 }
 //-----------------------------------------------------------------------------------------------------
-//
+// 실수 이미지의 로그-폴라 트랜스폼
 //-----------------------------------------------------------------------------------------------------
 float logpolar(Mat& src, Mat& dst)
 {
@@ -123,6 +126,9 @@ float logpolar(Mat& src, Mat& dst)
 // As input we need equal sized images, with the same aspect ratio,
 // scale difference should not exceed 1.8 times.
 //-----------------------------------------------------------------------------------------------------
+// 핵심 함수
+// 입력: 이미지1, 이미지2, 캐니문턱1, 캐니문턱2
+// 출력: RotatedRect
 RotatedRect LogPolarFFTTemplateMatch(Mat& im0, Mat& im1, double canny_threshold1, double canny_threshold2)
 {
     // Accept 1 or 3 channel CV_8U, CV_32F or CV_64F images.
