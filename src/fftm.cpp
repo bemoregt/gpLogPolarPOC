@@ -132,15 +132,18 @@ float logpolar(Mat& src, Mat& dst)
 RotatedRect LogPolarFFTTemplateMatch(Mat& im0, Mat& im1, double canny_threshold1, double canny_threshold2)
 {
     // Accept 1 or 3 channel CV_8U, CV_32F or CV_64F images.
+    // 어떤 이미지도 수령
     CV_Assert((im0.type() == CV_8UC1) || (im0.type() == CV_8UC3) ||
         (im0.type() == CV_32FC1) || (im0.type() == CV_32FC3) ||
         (im0.type() == CV_64FC1) || (im0.type() == CV_64FC3));
-
+    
+    // 이미지 크기가 같아야 함.
     CV_Assert(im0.rows == im1.rows && im0.cols == im1.cols);
 
-    CV_Assert(im0.channels() == 1 || im0.channels() == 3 || im0.channels() == 4);
-
-    CV_Assert(im1.channels() == 1 || im1.channels() == 3 || im1.channels() == 4);
+    // 그레이스케일 이거나, 컬러거나, 알파채널 이거나
+    CV_Assert((im0.channels() == 1 && im1.channels() == 1) || 
+              (im0.channels() == 3 && im1.channels() == 3) || 
+              (im0.channels() == 4 && im1.channels() == 4));
 
     Mat im0_tmp = im0.clone();
     Mat im1_tmp = im1.clone();
